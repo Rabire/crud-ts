@@ -1,12 +1,13 @@
 import { Sequelize } from "sequelize-typescript";
 import { Todos } from "../models/todos";
+import config from "./environment";
 
 const database = new Sequelize({
-  dialect: "mysql",
-  host: "localhost",
-  username: "root",
-  password: "pass123",
-  database: "app-db-name",
+  dialect: "mariadb",
+  host: config.host,
+  database: config.database,
+  username: config.username,
+  password: config.password,
   logging: false,
   models: [Todos],
 });

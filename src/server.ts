@@ -1,16 +1,19 @@
 import express, { Request, Response, NextFunction } from "express";
 import { json, urlencoded } from "body-parser";
-import database from "./database/config";
+import * as dotenv from "dotenv";
+import database from "./config/database";
 import todosRoutes from "./routes/todos";
+import config from "./config/environment";
 
-const PORT = 3040;
+dotenv.config();
+const PORT = config.port;
 
 const app = express();
 
 app.use(json());
 app.use(urlencoded({ extended: false }));
 
-app.use("/totos", todosRoutes);
+app.use("/todos", todosRoutes);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ message: err.message });
@@ -21,4 +24,4 @@ database
   .then(() => console.log("Database synced successfully"))
   .catch((err) => console.log("Err " + err));
 
-app.listen(PORT, () => console.log("Server is running on port " + PORT));
+app.listen(PORT, () => console.log("Listening on port " + PORT));
