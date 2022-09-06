@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import { Todos } from "../models/todos";
+import { Todos } from "models/todos";
 import config from "./environment";
 
 const database = new Sequelize({

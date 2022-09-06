@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { Todos } from "../models/todos";
+import { Todos } from "models/todos";
 
 export const getAll: RequestHandler = async (req, res, next) => {
   const allTodos: Todos[] = await Todos.findAll();
