@@ -1,12 +1,10 @@
 import express, { Request, Response, NextFunction } from "express";
 import { json, urlencoded } from "body-parser";
-import * as dotenv from "dotenv";
 
 import database from "config/database";
 import config from "config/environment";
 import todosRoutes from "routes/todos";
 
-dotenv.config();
 const PORT = config.port;
 
 const app = express();
