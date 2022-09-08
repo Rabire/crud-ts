@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { TodoInstance } from "models/todo";
 
-export const getAll: RequestHandler = async (req, res, next) => {
+export const getAll: RequestHandler = async (req, res) => {
   const allTodos = await TodoInstance.findAll();
 
   return res
@@ -10,7 +10,7 @@ export const getAll: RequestHandler = async (req, res, next) => {
     .json({ message: "Successfully fetched todos", data: allTodos });
 };
 
-export const create: RequestHandler = async (req, res, next) => {
+export const create: RequestHandler = async (req, res) => {
   const id = uuidv4();
 
   try {

@@ -4,7 +4,7 @@ import database from "config/database";
 type TodoAttributes = {
   id: string;
   title: string;
-  completed: boolean;
+  isCompleted: boolean;
 };
 
 export class TodoInstance extends Model<TodoAttributes> {}
@@ -20,7 +20,7 @@ TodoInstance.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    completed: {
+    isCompleted: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
