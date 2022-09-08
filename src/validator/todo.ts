@@ -2,7 +2,12 @@ import { body } from "express-validator";
 
 class TodoValidator {
   checkCreateReq = () => [
-    body("title").notEmpty().withMessage("The value sould not be empty"),
+    body("title")
+      .notEmpty()
+      .withMessage("The value should not be empty")
+      .isString()
+      .withMessage("The value should be a string"),
+
     body("isCompleted")
       .optional()
       .isBoolean()

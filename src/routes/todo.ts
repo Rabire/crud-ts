@@ -2,6 +2,7 @@ import { Router } from "express";
 import TodoController from "controller/todo";
 import handleValidation from "middleware/handleValidation";
 import TodoValidator from "validator/todo";
+import catchHandler from "utils/catchError";
 
 const router = Router();
 
@@ -11,7 +12,7 @@ router.post(
   "/",
   TodoValidator.checkCreateReq(),
   handleValidation,
-  TodoController.create
+  catchHandler(TodoController.create)
 );
 
 export default router;
