@@ -1,19 +1,33 @@
-import { Table, Model, Column, DataType } from "sequelize-typescript";
+import { Model, DataTypes } from "sequelize";
+import database from "config/database";
 
-@Table({
-  timestamps: false,
-  tableName: "todo",
-})
-export class Todo extends Model {
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  name!: string;
+type TodoAttributes = {
+  id: string;
+  title: string;
+  completed: boolean;
+};
 
-  @Column({
-    type: DataType.STRING,
-    allowNull: false,
-  })
-  description!: string;
-}
+export class TodoInstance extends Model<TodoAttributes> {}
+
+TodoInstance.init(
+  {
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+      allowNull: false,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    completed: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+  },
+  {
+    sequelize: database,
+    tableName: "todos",
+  }
+);
