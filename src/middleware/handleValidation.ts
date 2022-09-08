@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
 import { validationResult } from "express-validator";
 
-export const handleValidationError: RequestHandler = (req, res, next) => {
+const handleValidation: RequestHandler = (req, res, next) => {
   const error = validationResult(req);
 
   if (!error.isEmpty()) return res.json({ error });
@@ -9,4 +9,4 @@ export const handleValidationError: RequestHandler = (req, res, next) => {
   next();
 };
 
-export * from "./todo";
+export default handleValidation;

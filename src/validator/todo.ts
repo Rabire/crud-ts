@@ -1,7 +1,7 @@
 import { body } from "express-validator";
 
-export const todoValidator = {
-  checkCreateReq: [
+class TodoValidator {
+  checkCreateReq = () => [
     body("title").notEmpty().withMessage("The value sould not be empty"),
     body("isCompleted")
       .optional()
@@ -9,5 +9,7 @@ export const todoValidator = {
       .withMessage("The value should be boolean")
       .isIn([0, false])
       .withMessage("The value should be 0 or false"),
-  ],
-};
+  ];
+}
+
+export default new TodoValidator();
