@@ -4,11 +4,20 @@ import { TodoInstance } from "models/todo";
 
 class TodoController {
   getAll: RequestHandler = async (req, res) => {
-    const allTodos = await TodoInstance.findAll();
+    try {
+      const records = await TodoInstance.findAll();
 
-    return res
-      .status(200)
-      .json({ message: "Successfully fetched todos", data: allTodos });
+      return res.json({
+        status: 200,
+        message: "Successfully fetched todos",
+        data: records,
+      });
+    } catch (e) {
+      return res.json({
+        status: 500,
+        message: `Failed to get all todos - ${e}`,
+      });
+    }
   };
 
   create: RequestHandler = async (req, res) => {

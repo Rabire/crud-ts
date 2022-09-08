@@ -6,9 +6,10 @@ import TodoValidator from "validator/todo";
 const router = Router();
 
 router.get("/", TodoController.getAll);
+
 router.post(
   "/",
-  TodoValidator.checkCreateReq,
+  TodoValidator.checkCreateReq(),
   handleValidation,
   TodoController.create
 );
