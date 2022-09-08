@@ -1,8 +1,8 @@
 import { RequestHandler } from "express";
-import { Todos } from "models/todos";
+import { Todo } from "models/todo";
 
 export const getAll: RequestHandler = async (req, res, next) => {
-  const allTodos: Todos[] = await Todos.findAll();
+  const allTodos: Todo[] = await Todo.findAll();
 
   return res
     .status(200)

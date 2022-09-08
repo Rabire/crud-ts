@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getAll } from "controller/totos";
+import { getAll } from "controller/todo";
 
 const router = Router();
 

@@ -3,7 +3,7 @@ import { json, urlencoded } from "body-parser";
 
 import database from "config/database";
 import config from "config/environment";
-import todosRoutes from "routes/todos";
+import todosRoutes from "routes/todo";
 
 const PORT = config.port;
 
