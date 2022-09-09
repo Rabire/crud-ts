@@ -4,7 +4,10 @@ import { validationResult } from "express-validator";
 const handleValidation: RequestHandler = (req, res, next) => {
   const error = validationResult(req);
 
-  if (!error.isEmpty()) return res.json({ error });
+  if (!error.isEmpty())
+    return res
+      .status(500)
+      .json({ message: "Validation error", error: error.array()[0] });
 
   next();
 };

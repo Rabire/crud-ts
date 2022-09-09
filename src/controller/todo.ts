@@ -1,10 +1,13 @@
 import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { TodoInstance } from "models/todo";
+import { getPagination } from "utils/pagination";
 
 class TodoController {
   getAll: RequestHandler = async (req, res) => {
-    const records = await TodoInstance.findAll();
+    const { limit, offset } = getPagination(req);
+
+    const records = await TodoInstance.findAll({ where: {}, limit, offset });
 
     return res.json({
       status: 200,
