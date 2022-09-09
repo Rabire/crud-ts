@@ -1,7 +1,7 @@
 import { Router } from "express";
 import TodoController from "controller/todo";
 import handleValidation from "middleware/handleValidation";
-import checkValidation from "validator/pagination";
+import CommonValidator from "validator/common";
 import TodoValidator from "validator/todo";
 import catchHandler from "utils/catchError";
 
@@ -9,9 +9,16 @@ const router = Router();
 
 router.get(
   "/",
-  checkValidation(),
+  CommonValidator.checkPagination(),
   handleValidation,
   catchHandler(TodoController.getAll)
+);
+
+router.get(
+  "/:id",
+  CommonValidator.checkIdParam(),
+  handleValidation,
+  catchHandler(TodoController.getById)
 );
 
 router.post(

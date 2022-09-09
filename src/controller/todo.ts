@@ -16,13 +16,25 @@ class TodoController {
     });
   };
 
+  getById: RequestHandler = async (req, res) => {
+    const { id } = req.params;
+
+    const record = await TodoInstance.findOne({ where: { id } });
+
+    return res.json({
+      status: 200,
+      message: "Successfully fetched todo",
+      data: record,
+    });
+  };
+
   create: RequestHandler = async (req, res) => {
     const id = uuidv4();
 
     const record = await TodoInstance.create({ ...req.body, id });
 
     return res.json({
-      status: 200,
+      status: 201,
       message: "Successfully created todo",
       data: record,
     });

@@ -6,7 +6,7 @@ const handleValidation: RequestHandler = (req, res, next) => {
 
   if (!error.isEmpty())
     return res
-      .status(500)
+      .status(400)
       .json({ message: "Validation error", error: error.array()[0] });
 
   next();
