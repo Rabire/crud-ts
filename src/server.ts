@@ -2,10 +2,9 @@ import express, { Request, Response, NextFunction } from "express";
 import { json, urlencoded } from "body-parser";
 
 import database from "config/database";
-import config from "config/environment";
 import todoRoutes from "routes/todo";
 
-const PORT = config.port;
+const PORT = 3041;
 
 const app = express();
 

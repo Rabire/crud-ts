@@ -6,10 +6,11 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "dev": "npx ts-node-dev --prefer-ts true --no-notify -r tsconfig-paths/register --watch src --transpile-only src/server.ts",
+    "dev": "NODE_ENV=development npx ts-node-dev --prefer-ts true --no-notify -r tsconfig-paths/register --watch src --transpile-only src/server.ts",
     "build": "npx ttsc --p ./tsconfig.json",
-    "start": "node dist/src/server.js",
-    "migrate": "npx sequelize-cli db:migrate"
+    "migrate": "npm run build && NODE_ENV=development npx sequelize-cli db:migrate",
+    "start": "npm run build && NODE_ENV=production node dist/src/server.js",
+    "migrate-prod": "npm run build && NODE_ENV=production npx sequelize-cli db:migrate"
   },
   "dependencies": {
     "body-parser": "^1.20.0",

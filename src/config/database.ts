@@ -1,13 +1,15 @@
 import { Sequelize } from "sequelize";
 import { TodoInstance } from "models/todo";
-import config from "./environment";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const database = new Sequelize({
   dialect: "mariadb",
-  host: config.host,
-  database: config.database,
-  username: config.username,
-  password: config.password,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   logging: false,
 });
 

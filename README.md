@@ -1,6 +1,5 @@
 ## To do
 
-- migrations
 - seeder
 - auth
 
@@ -18,9 +17,8 @@
 ```
 docker-compose up
 npm i
-npm run migrate
-npm run seed
 npm run dev
+npm run migrate
 ```
 
 ### Add migration
@@ -40,3 +38,8 @@ npx sequelize migration:create --name migration-name-here
 ## Production
 
 TODO:
+
+```
+npm run start
+npm run migrate-prod
+```

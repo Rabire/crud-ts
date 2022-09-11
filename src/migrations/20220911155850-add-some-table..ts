@@ -10,7 +10,7 @@ module.exports = {
        * Example:
        * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
        */
-      await queryInterface.addColumn("todo", "deletedOn", {
+      await queryInterface.addColumn("todos", "deletedOn", {
         type: DataTypes.DATE,
         allowNull: true,
         defaultValue: null,

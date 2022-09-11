@@ -4,9 +4,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 module.exports = {
-  config: path.resolve("dist/src/config/config.json"),
+  config: path.resolve("dist/src/config/config.js"),
   "seeders-path": path.resolve("dist/src/seeders"),
   "migrations-path": path.resolve("dist/src/migrations"),
 };
-
-// https://github.com/sequelize/cli/issues/36

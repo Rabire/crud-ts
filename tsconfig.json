@@ -15,8 +15,11 @@
     "paths": {
       "config/*": ["./config/*"],
       "controller/*": ["./controller/*"],
+      "middleware/*": ["./middleware/*"],
       "models/*": ["./models/*"],
-      "routes/*": ["./routes/*"]
+      "routes/*": ["./routes/*"],
+      "utils/*": ["./utils/*"],
+      "validator/*": ["./validator/*"]
     },
     /* Advanced Options */
     "plugins": [{ "transform": "typescript-transform-paths" }]
