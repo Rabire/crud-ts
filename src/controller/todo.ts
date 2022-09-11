@@ -11,7 +11,7 @@ class TodoController {
 
     return res.json({
       status: 200,
-      message: "Successfully fetched todos",
+      message: "Successfully fetched records",
       data: records,
     });
   };
@@ -23,7 +23,7 @@ class TodoController {
 
     return res.json({
       status: 200,
-      message: "Successfully fetched todo",
+      message: "Successfully fetched record",
       data: record,
     });
   };
@@ -35,7 +35,7 @@ class TodoController {
 
     return res.json({
       status: 201,
-      message: "Successfully created todo",
+      message: "Successfully created record",
       data: record,
     });
   };
@@ -48,15 +48,35 @@ class TodoController {
     if (!record)
       return res.json({
         status: 400,
-        message: "Cannot find todo",
+        message: "Cannot find record",
       });
 
     const updatedRecord = await record.update({ ...req.body });
 
     return res.json({
       status: 200,
-      message: "Successfully updated todo",
+      message: "Successfully updated record",
       data: updatedRecord,
+    });
+  };
+
+  delete: RequestHandler = async (req, res) => {
+    const { id } = req.params;
+
+    const record = await TodoInstance.findOne({ where: { id } });
+
+    if (!record)
+      return res.json({
+        status: 400,
+        message: "Cannot find record",
+      });
+
+    const deletedRecord = await record.update({ ...req.body });
+
+    return res.json({
+      status: 200,
+      message: "Successfully deleted record",
+      data: deletedRecord,
     });
   };
 }

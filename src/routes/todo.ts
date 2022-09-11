@@ -47,4 +47,14 @@ router.put(
   catchHandler(TodoController.update)
 );
 
+/**
+ * Soft delete a record by id
+ */
+router.delete(
+  "/:id",
+  CommonValidator.checkIdParam(),
+  handleValidation,
+  catchHandler(TodoController.delete)
+);
+
 export default router;
