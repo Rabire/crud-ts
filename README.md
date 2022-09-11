@@ -4,7 +4,6 @@
 - auth
 
 - services
-  - api
   - fallback fn
   - cron
 
