@@ -2,14 +2,15 @@
   "name": "crud-ts",
   "version": "1.0.0",
   "description": "",
-  "scripts": {
-    "dev": "npx ts-node-dev --prefer-ts true --no-notify -r tsconfig-paths/register --watch src --transpile-only src/server.ts",
-    "build": "npx ttsc --p ./tsconfig.json",
-    "start": "node dist/src/server.js"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "scripts": {
+    "dev": "npx ts-node-dev --prefer-ts true --no-notify -r tsconfig-paths/register --watch src --transpile-only src/server.ts",
+    "build": "npx ttsc --p ./tsconfig.json",
+    "start": "node dist/src/server.js",
+    "migrate": "npx sequelize-cli db:migrate"
+  },
   "dependencies": {
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.2",
