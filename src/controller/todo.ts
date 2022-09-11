@@ -39,6 +39,26 @@ class TodoController {
       data: record,
     });
   };
+
+  update: RequestHandler = async (req, res) => {
+    const { id } = req.params;
+
+    const record = await TodoInstance.findOne({ where: { id } });
+
+    if (!record)
+      return res.json({
+        status: 400,
+        message: "Cannot find todo",
+      });
+
+    const updatedRecord = await record.update({ ...req.body });
+
+    return res.json({
+      status: 200,
+      message: "Successfully updated todo",
+      data: updatedRecord,
+    });
+  };
 }
 
 export default new TodoController();

@@ -7,6 +7,9 @@ import catchHandler from "utils/catchError";
 
 const router = Router();
 
+/**
+ * Get all records
+ */
 router.get(
   "/",
   CommonValidator.checkPagination(),
@@ -14,6 +17,9 @@ router.get(
   catchHandler(TodoController.getAll)
 );
 
+/**
+ * Get a record by id
+ */
 router.get(
   "/:id",
   CommonValidator.checkIdParam(),
@@ -21,11 +27,24 @@ router.get(
   catchHandler(TodoController.getById)
 );
 
+/**
+ * Create a record from body
+ */
 router.post(
   "/",
   TodoValidator.checkCreateReq(),
   handleValidation,
   catchHandler(TodoController.create)
+);
+
+/**
+ * Update a record by id
+ */
+router.put(
+  "/:id",
+  CommonValidator.checkIdParam(),
+  handleValidation,
+  catchHandler(TodoController.update)
 );
 
 export default router;
