@@ -1,9 +1,9 @@
 import { TodoInstance } from "models/todo";
-import { QueryInterface, DataTypes, QueryTypes } from "sequelize";
+import { QueryInterface, DataTypes } from "sequelize";
 
 module.exports = {
-  up: (queryInterface: QueryInterface): Promise<void> =>
-    queryInterface.sequelize.transaction(async (transaction) => {
+  up: async (queryInterface: QueryInterface): Promise<void> =>
+    await queryInterface.sequelize.transaction(async () => {
       /**
        * Add altering commands here.
        *
@@ -17,8 +17,8 @@ module.exports = {
       });
     }),
 
-  down: (queryInterface: QueryInterface): Promise<void> =>
-    queryInterface.sequelize.transaction(async (transaction) => {
+  down: async (queryInterface: QueryInterface): Promise<void> =>
+    await queryInterface.sequelize.transaction(async () => {
       /**
        * Add reverting commands here.
        *

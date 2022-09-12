@@ -1,6 +1,5 @@
 ## To do
 
-- seeder
 - auth
 
 - services
@@ -32,13 +31,27 @@ npx sequelize migration:create --name migration-name-here
 
 4 - Change its extension to .ts and use and existing template
 
-3 - Add necessary changes to the migration
+5 - Add necessary changes to the migration
+
+### Add seeder
+
+1 - Run the following command to generate a migration file
+
+```
+npx sequelize-cli seed:generate --name demo-user
+```
+
+2 - Move the generated file from `dist/srv/seeders` to `src/seeders`
+
+4 - Change its extension to .ts and use and existing template
+
+5 - Add necessary changes to the seeder
 
 ---
 
 ## Production
 
-On tthe server run
+On the server run
 
 FIXME:
 
