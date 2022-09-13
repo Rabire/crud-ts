@@ -1,4 +1,3 @@
-import { TodoInstance } from "models/todo";
 import { QueryInterface, DataTypes } from "sequelize";
 
 module.exports = {

@@ -1,5 +1,4 @@
 import { Sequelize } from "sequelize";
-import { TodoInstance } from "models/todo";
 import dotenv from "dotenv";
 
 dotenv.config();

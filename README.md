@@ -1,6 +1,7 @@
 ## To do
 
 - auth
+- tests
 
 - services
   - fallback fn
