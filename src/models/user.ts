@@ -1,13 +1,17 @@
 import { Model, DataTypes } from "sequelize";
 import database from "config/database";
 
-export type UserAttributes = {
+type UserAttributes = {
   id: string;
   email: string;
   password: string;
 };
 
-export class UserInstance extends Model<UserAttributes> {}
+export class UserInstance extends Model<UserAttributes> {
+  declare id: string;
+  declare email: string;
+  declare password: string;
+}
 
 UserInstance.init(
   {

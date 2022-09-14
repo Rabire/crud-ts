@@ -1,5 +1,6 @@
 import { Router } from "express";
 import TodoController from "controller/todo";
+import { validateToken } from "middleware/auth";
 import handleValidation from "middleware/handleValidation";
 import CommonValidator from "validator/common";
 import TodoValidator from "validator/todo";
@@ -13,6 +14,7 @@ const router = Router();
 router.get(
   "/",
   CommonValidator.checkPagination(),
+  validateToken,
   handleValidation,
   catchHandler(TodoController.getAll)
 );

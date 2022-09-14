@@ -1,7 +1,18 @@
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-export const hashPassword = async (rawPassword: string) => {
-  const salt = await bcrypt.genSalt();
+dotenv.config();
 
-  return bcrypt.hash(rawPassword, salt);
-};
+export const hash = async (rawPassword: string) => bcrypt.hash(rawPassword, 10);
+
+export const comparePasswords = async (
+  rawPassword: string,
+  hashedPassword = ""
+) => await bcrypt.compare(rawPassword, hashedPassword);
+
+const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || "accessSecret";
+// const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || "refreshSecret";
+
+export const createToken = (userId: string) =>
+  jwt.sign(userId, ACCESS_TOKEN_SECRET);

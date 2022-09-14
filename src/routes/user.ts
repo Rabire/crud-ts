@@ -4,12 +4,10 @@ import catchHandler from "utils/catchError";
 
 const router = Router();
 
-router.get("/all", catchHandler(UserController.getAll));
-
-router.get("/validate", catchHandler(UserController.validateToken));
-
-router.post("/login", catchHandler(UserController.login));
+router.get("/", catchHandler(UserController.getAll));
 
 router.post("/register", catchHandler(UserController.register));
+
+router.post("/login", catchHandler(UserController.login));
 
 export default router;
