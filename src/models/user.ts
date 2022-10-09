@@ -5,12 +5,16 @@ type UserAttributes = {
   id: string;
   email: string;
   password: string;
+  accessToken: string | null;
+  refreshToken: string | null;
 };
 
 export class UserInstance extends Model<UserAttributes> {
   declare id: string;
   declare email: string;
   declare password: string;
+  declare accessToken: string | null;
+  declare refreshToken: string | null;
 }
 
 UserInstance.init(
@@ -22,11 +26,20 @@ UserInstance.init(
     },
     email: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    accessToken: {
+      type: DataTypes.STRING,
+      defaultValue: null,
+    },
+    refreshToken: {
+      type: DataTypes.STRING,
+      defaultValue: null,
     },
   },
   {

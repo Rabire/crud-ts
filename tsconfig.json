@@ -19,7 +19,8 @@
       "models/*": ["./models/*"],
       "routes/*": ["./routes/*"],
       "utils/*": ["./utils/*"],
-      "validator/*": ["./validator/*"]
+      "validator/*": ["./validator/*"],
+      "services/*": ["./services/*"]
     },
     /* Advanced Options */
     "plugins": [{ "transform": "typescript-transform-paths" }]

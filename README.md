@@ -1,6 +1,7 @@
 ## To do
 
 - auth
+- validators everywhere
 - tests
 
 - services
