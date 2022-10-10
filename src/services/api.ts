@@ -13,8 +13,7 @@ const api = (app: Express) => {
   app.use("/user", userRoutes);
 
   app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    res.status(500).json({ error: err.message });
-    console.log(err?.parent?.text); // FIXME:
+    res.status(500).json({ error: err?.parent?.text || err.message });
   });
 };
 
