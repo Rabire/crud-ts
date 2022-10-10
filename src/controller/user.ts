@@ -1,4 +1,6 @@
 import { RequestHandler } from "express";
+import jwt, { VerifyErrors, JwtPayload } from "jsonwebtoken";
+import dotenv from "dotenv";
 import { v4 as uuidv4 } from "uuid";
 
 import { UserInstance } from "models/user";
@@ -7,7 +9,14 @@ import {
   comparePasswords,
   generateAccessToken,
   generateRefreshToken,
+  isUserLoggedIn,
+  expendAccessTokenExpiration,
 } from "utils/auth";
+
+dotenv.config();
+
+const REFRESH_TOKEN_SECRET =
+  process.env.REFRESH_TOKEN_SECRET || "refreshSecret";
 
 class UserController {
   getAll: RequestHandler = async (req, res) => {
@@ -31,17 +40,14 @@ class UserController {
       id,
       email,
       password: hashedPassword,
+      accessToken: generateAccessToken(id),
+      refreshToken: generateRefreshToken(id),
     });
-
-    const record = await createdUser.update({
-      accessToken: generateAccessToken(createdUser.id),
-      refreshToken: generateRefreshToken(createdUser.id),
-    }); // TODO: find a way to access id before creation ?
 
     return res.json({
       status: 201,
       message: "Successfully created record",
-      data: record,
+      data: createdUser,
     });
   };
 
@@ -71,21 +77,50 @@ class UserController {
   };
 
   logout: RequestHandler = async (req, res) => {
-    // TODO:
-    // need token
-    // delete tokens
+    await UserInstance.update(
+      { accessToken: null, refreshToken: null },
+      { where: { id: req.userId } }
+    );
+
+    return res.json({
+      status: 200,
+      message: "Successfully logged out",
+    });
   };
 
   refreshToken: RequestHandler = async (req, res) => {
-    // TODO: validator
-    const { refreshToken } = req.body;
+    // TODO: validator & remove manual validation bellow
 
-    // TODO:
-    // si le token est expiré
-    //TODO: MAJ accessToken grace au refreshToken
+    const refreshToken = (req.body.refreshToken as string) || undefined;
+    if (!refreshToken) throw Error("access token not provided in header");
 
-    // si le refreshToken est expiré
-    // demande une reconnextion
+    jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, async (err, payload) => {
+      if (err)
+        return res.json({
+          status: 401,
+          message: "Authentication failed - invalid refreshToken",
+        });
+
+      if (payload) {
+        const userId = Object.values(payload)[0] as string;
+
+        isUserLoggedIn(userId).then((isLoggedIn) => {
+          if (!isLoggedIn)
+            return res.json({
+              status: 401,
+              message: "Authentication failed - user logged out",
+            });
+        });
+
+        const newAccessToken = await expendAccessTokenExpiration(userId);
+
+        return res.json({
+          status: 401,
+          message: "Authentication failed - invalid token",
+          data: { accessToken: newAccessToken },
+        });
+      }
+    });
   };
 }
 
