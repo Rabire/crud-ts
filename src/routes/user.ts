@@ -2,15 +2,50 @@ import { Router } from "express";
 import UserController from "controller/user";
 import catchHandler from "utils/catchError";
 import { validateToken } from "middleware/auth";
+import handleValidation from "middleware/handleValidation";
+import CommonValidator from "validator/common";
 
 const router = Router();
 
-router.get("/", catchHandler(UserController.getAll));
+router.get(
+  "/",
+  CommonValidator.checkToken(),
+  handleValidation,
+  validateToken,
 
-router.post("/register", catchHandler(UserController.register));
+  catchHandler(UserController.getAll)
+);
 
-router.post("/login", catchHandler(UserController.login));
+router.post(
+  "/register",
+  // TODO: validator email, password
+  handleValidation,
 
-router.post("/logout", validateToken, catchHandler(UserController.logout));
+  catchHandler(UserController.register)
+);
+
+router.post(
+  "/login",
+  // TODO: validator email, password
+  handleValidation,
+
+  catchHandler(UserController.login)
+);
+
+router.post(
+  "/logout",
+  CommonValidator.checkToken(),
+  handleValidation,
+
+  catchHandler(UserController.logout)
+);
+
+router.post(
+  "/refreshToken",
+  // TODO: validator refreshToken
+  handleValidation,
+
+  catchHandler(UserController.logout)
+);
 
 export default router;

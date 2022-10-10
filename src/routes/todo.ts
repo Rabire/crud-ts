@@ -14,8 +14,10 @@ const router = Router();
 router.get(
   "/",
   CommonValidator.checkPagination(),
-  validateToken,
+  CommonValidator.checkToken(),
   handleValidation,
+
+  validateToken,
   catchHandler(TodoController.getAll)
 );
 
@@ -25,7 +27,10 @@ router.get(
 router.get(
   "/:id",
   CommonValidator.checkIdParam(),
+  CommonValidator.checkToken(),
   handleValidation,
+  validateToken,
+
   catchHandler(TodoController.getById)
 );
 
@@ -35,7 +40,10 @@ router.get(
 router.post(
   "/",
   TodoValidator.checkCreateReq(),
+  CommonValidator.checkToken(),
   handleValidation,
+  validateToken,
+
   catchHandler(TodoController.create)
 );
 
@@ -45,7 +53,11 @@ router.post(
 router.put(
   "/:id",
   CommonValidator.checkIdParam(),
+  // TODO: check new values
+  CommonValidator.checkToken(),
   handleValidation,
+  validateToken,
+
   catchHandler(TodoController.update)
 );
 
@@ -55,7 +67,10 @@ router.put(
 router.delete(
   "/:id",
   CommonValidator.checkIdParam(),
+  CommonValidator.checkToken(),
   handleValidation,
+  validateToken,
+
   catchHandler(TodoController.delete)
 );
 

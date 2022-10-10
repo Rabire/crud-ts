@@ -8,9 +8,6 @@ class TodoController {
   getAll: RequestHandler = async (req, res) => {
     const { limit, offset } = getPagination(req);
 
-    // const user = await getUserById(req.userId);
-    // console.log({ user });
-
     const records = await TodoInstance.findAll({ where: {}, limit, offset });
 
     return res.json({
@@ -55,7 +52,7 @@ class TodoController {
         message: "Cannot find record",
       });
 
-    const updatedRecord = await record.update({ ...req.body });
+    const updatedRecord = await record.update({ ...req.body }); // TODO: use 1 request
 
     return res.json({
       status: 200,
@@ -76,6 +73,8 @@ class TodoController {
       });
 
     const deletedRecord = await record.update({ ...req.body });
+    // TODO: use 1 request
+    // soft delete
 
     return res.json({
       status: 200,

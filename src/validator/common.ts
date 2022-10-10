@@ -1,4 +1,6 @@
-import { param, query } from "express-validator";
+import { header, param, query } from "express-validator";
+import { Router } from "express";
+import handleValidation from "middleware/handleValidation";
 
 class CommonValidator {
   checkIdParam = () => [
@@ -19,6 +21,12 @@ class CommonValidator {
       .isInt({ min: 0 })
       .withMessage("The value should be 0 or a higher number"),
   ];
+
+  checkToken = () => [
+    header("token").notEmpty().withMessage("The value should not be empty"),
+  ];
+
+  router = Router().use(handleValidation);
 }
 
 export default new CommonValidator();
