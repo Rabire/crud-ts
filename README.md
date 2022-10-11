@@ -1,6 +1,5 @@
 ## To do
 
-- validators everywhere
 - tests
 
 - services

@@ -48,11 +48,11 @@ class TodoController {
 
     if (!record)
       return res.json({
-        status: 400,
+        status: 404,
         message: "Cannot find record",
       });
 
-    const updatedRecord = await record.update({ ...req.body }); // TODO: use 1 request
+    const updatedRecord = await record.update({ ...req.body });
 
     return res.json({
       status: 200,
@@ -68,13 +68,12 @@ class TodoController {
 
     if (!record)
       return res.json({
-        status: 400,
+        status: 404,
         message: "Cannot find record",
       });
 
     const deletedRecord = await record.update({ ...req.body });
-    // TODO: use 1 request
-    // soft delete
+    // TODO: soft delete
 
     return res.json({
       status: 200,
