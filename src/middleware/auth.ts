@@ -8,10 +8,7 @@ dotenv.config();
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || "accessSecret";
 
 export const validateToken: RequestHandler = (req, res, next) => {
-  // TODO: validator & remove manual validation bellow
-
-  const token = (req.headers.token as string) || undefined;
-  if (!token) throw Error("access token not provided in header");
+  const token = req.headers.token as string;
 
   jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, payload) => {
     if (err)

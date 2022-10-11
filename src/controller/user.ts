@@ -89,8 +89,7 @@ class UserController {
   };
 
   refreshToken: RequestHandler = async (req, res) => {
-    const refreshToken = (req.body.refreshToken as string) || undefined;
-    if (!refreshToken) throw Error("access token not provided in header");
+    const refreshToken = req.body.token as string;
 
     jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, async (err, payload) => {
       if (err)
