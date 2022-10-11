@@ -39,7 +39,7 @@ router.get(
  */
 router.post(
   "/",
-  TodoValidator.checkCreateReq(),
+  TodoValidator.checkCreate(),
   CommonValidator.checkToken(),
   handleValidation,
   validateToken,
@@ -53,7 +53,7 @@ router.post(
 router.put(
   "/:id",
   CommonValidator.checkIdParam(),
-  // TODO: check new values
+  TodoValidator.checkUpdate(),
   CommonValidator.checkToken(),
   handleValidation,
   validateToken,
