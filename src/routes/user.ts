@@ -4,6 +4,7 @@ import catchHandler from "utils/catchError";
 import { validateToken } from "middleware/auth";
 import handleValidation from "middleware/handleValidation";
 import CommonValidator from "validator/common";
+import UserValidator from "validator/user";
 
 const router = Router();
 
@@ -18,7 +19,7 @@ router.get(
 
 router.post(
   "/register",
-  // TODO: validator email, password
+  UserValidator.checkRegister(),
   handleValidation,
 
   catchHandler(UserController.register)
@@ -26,7 +27,7 @@ router.post(
 
 router.post(
   "/login",
-  // TODO: validator email, password
+  UserValidator.checkLogin(),
   handleValidation,
 
   catchHandler(UserController.login)
@@ -42,10 +43,10 @@ router.post(
 
 router.post(
   "/refreshToken",
-  // TODO: validator refreshToken
+  UserValidator.checkRefreshToken(),
   handleValidation,
 
-  catchHandler(UserController.logout)
+  catchHandler(UserController.refreshToken)
 );
 
 export default router;

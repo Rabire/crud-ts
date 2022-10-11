@@ -89,8 +89,6 @@ class UserController {
   };
 
   refreshToken: RequestHandler = async (req, res) => {
-    // TODO: validator & remove manual validation bellow
-
     const refreshToken = (req.body.refreshToken as string) || undefined;
     if (!refreshToken) throw Error("access token not provided in header");
 
@@ -115,8 +113,8 @@ class UserController {
         const newAccessToken = await expendAccessTokenExpiration(userId);
 
         return res.json({
-          status: 401,
-          message: "Authentication failed - invalid token",
+          status: 200,
+          message: "Token refreshed successfully",
           data: { accessToken: newAccessToken },
         });
       }
