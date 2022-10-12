@@ -2,8 +2,8 @@ import { Router } from "express";
 import TodoController from "controller/todo";
 import validateToken from "middleware/validateToken";
 import handleValidation from "middleware/handleValidation";
-import CommonValidator from "validator/common";
-import TodoValidator from "validator/todo";
+import { checkPagination, checkToken, checkIdParam } from "validator/common";
+import { checkCreate, checkUpdate } from "validator/todo";
 import catchHandler from "utils/catchError";
 
 const router = Router();
@@ -13,8 +13,8 @@ const router = Router();
  */
 router.get(
   "/",
-  CommonValidator.checkPagination(),
-  CommonValidator.checkToken(),
+  checkPagination(),
+  checkToken(),
   handleValidation,
 
   validateToken,
@@ -26,8 +26,8 @@ router.get(
  */
 router.get(
   "/:id",
-  CommonValidator.checkIdParam(),
-  CommonValidator.checkToken(),
+  checkIdParam(),
+  checkToken(),
   handleValidation,
   validateToken,
 
@@ -39,8 +39,8 @@ router.get(
  */
 router.post(
   "/",
-  TodoValidator.checkCreate(),
-  CommonValidator.checkToken(),
+  checkCreate(),
+  checkToken(),
   handleValidation,
   validateToken,
 
@@ -52,9 +52,9 @@ router.post(
  */
 router.put(
   "/:id",
-  CommonValidator.checkIdParam(),
-  TodoValidator.checkUpdate(),
-  CommonValidator.checkToken(),
+  checkIdParam(),
+  checkUpdate(),
+  checkToken(),
   handleValidation,
   validateToken,
 
@@ -66,8 +66,8 @@ router.put(
  */
 router.delete(
   "/:id",
-  CommonValidator.checkIdParam(),
-  CommonValidator.checkToken(),
+  checkIdParam(),
+  checkToken(),
   handleValidation,
   validateToken,
 

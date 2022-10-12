@@ -1,4 +1,4 @@
-## To do
+# To do
 
 - tests
 - todo => animals ?
@@ -10,18 +10,29 @@
 
 ---
 
-## Development utils
+# Development utils
 
-### Start project
+## Project architecture
+
+### Request validators functions
+
+- are located in `src/validator`
+- are named like so: `check<request>`
+
+---
+
+## Start project
 
 ```
-docker-compose up
+docker-compose up // start db
 npm i
 npm run dev
 npm run migrate
 ```
 
-### Add migration
+---
+
+## Add migration
 
 1 - Run the following command to generate a migration file
 
@@ -35,7 +46,9 @@ npx sequelize migration:create --name migration-name-here
 
 5 - Add necessary changes to the migration
 
-### Add seeder
+---
+
+## Add seeder
 
 1 - Run the following command to generate a migration file
 
