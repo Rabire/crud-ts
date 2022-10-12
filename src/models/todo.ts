@@ -5,9 +5,15 @@ type TodoAttributes = {
   id: string;
   title: string;
   isCompleted: boolean;
+  deletedAt: Date | null;
 };
 
-export class TodoInstance extends Model<TodoAttributes> {}
+export class TodoInstance extends Model<TodoAttributes> {
+  declare id: string;
+  declare title: string;
+  declare isCompleted: boolean;
+  declare deletedAt: Date | null;
+}
 
 TodoInstance.init(
   {
@@ -24,6 +30,11 @@ TodoInstance.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
+    },
+    deletedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: null,
     },
   },
   {

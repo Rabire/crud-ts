@@ -2,13 +2,16 @@ import { RequestHandler } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { TodoInstance } from "models/todo";
 import { getPagination } from "utils/pagination";
-// import { getUserById } from "utils/user";
 
 class TodoController {
   getAll: RequestHandler = async (req, res) => {
     const { limit, offset } = getPagination(req);
 
-    const records = await TodoInstance.findAll({ where: {}, limit, offset });
+    const records = await TodoInstance.findAll({
+      where: { deletedAt: null },
+      limit,
+      offset,
+    });
 
     return res.json({
       status: 200,
@@ -20,7 +23,9 @@ class TodoController {
   getById: RequestHandler = async (req, res) => {
     const { id } = req.params;
 
-    const record = await TodoInstance.findOne({ where: { id } });
+    const record = await TodoInstance.findOne({
+      where: { id },
+    });
 
     return res.json({
       status: 200,
@@ -72,13 +77,12 @@ class TodoController {
         message: "Cannot find record",
       });
 
-    const deletedRecord = await record.update({ ...req.body });
-    // TODO: soft delete
+    const deletedRecord = await record.update({ deletedAt: new Date() });
 
     return res.json({
       status: 200,
       message: "Successfully deleted record",
-      data: deletedRecord,
+      data: deletedRecord.id,
     });
   };
 }
