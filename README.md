@@ -1,12 +1,16 @@
 # To do
 
 - tests
+  - routes
+  - db
 - todo => animals ?
-- eslint
 
 - services
+
   - fallback fn
   - cron
+
+- prod
 
 ---
 
