@@ -1,6 +1,8 @@
 ## To do
 
 - tests
+- todo => animals ?
+- eslint
 
 - services
   - fallback fn

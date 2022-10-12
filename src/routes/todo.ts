@@ -1,6 +1,6 @@
 import { Router } from "express";
 import TodoController from "controller/todo";
-import { validateToken } from "middleware/auth";
+import validateToken from "middleware/validateToken";
 import handleValidation from "middleware/handleValidation";
 import CommonValidator from "validator/common";
 import TodoValidator from "validator/todo";

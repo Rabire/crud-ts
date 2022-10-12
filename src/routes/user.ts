@@ -1,10 +1,17 @@
 import { Router } from "express";
-import UserController from "controller/user";
-import catchHandler from "utils/catchError";
-import { validateToken } from "middleware/auth";
+
+import getAll from "controller/user/getAll";
+import login from "controller/user/login";
+import logout from "controller/user/logout";
+import refreshToken from "controller/user/refreshToken";
+import register from "controller/user/register";
+
+import validateToken from "middleware/validateToken";
 import handleValidation from "middleware/handleValidation";
+
 import CommonValidator from "validator/common";
 import UserValidator from "validator/user";
+import catchHandler from "utils/catchError";
 
 const router = Router();
 
@@ -14,7 +21,7 @@ router.get(
   handleValidation,
   validateToken,
 
-  catchHandler(UserController.getAll)
+  catchHandler(getAll)
 );
 
 router.post(
@@ -22,7 +29,7 @@ router.post(
   UserValidator.checkRegister(),
   handleValidation,
 
-  catchHandler(UserController.register)
+  catchHandler(register)
 );
 
 router.post(
@@ -30,7 +37,7 @@ router.post(
   UserValidator.checkLogin(),
   handleValidation,
 
-  catchHandler(UserController.login)
+  catchHandler(login)
 );
 
 router.post(
@@ -38,7 +45,7 @@ router.post(
   CommonValidator.checkToken(),
   handleValidation,
 
-  catchHandler(UserController.logout)
+  catchHandler(logout)
 );
 
 router.post(
@@ -46,7 +53,7 @@ router.post(
   UserValidator.checkRefreshToken(),
   handleValidation,
 
-  catchHandler(UserController.refreshToken)
+  catchHandler(refreshToken)
 );
 
 export default router;

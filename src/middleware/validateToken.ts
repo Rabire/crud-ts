@@ -7,10 +7,16 @@ dotenv.config();
 
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || "accessSecret";
 
-export const validateToken: RequestHandler = (req, res, next) => {
+// TODO: test
+/**
+ * Check access token validity
+ * if valid, expend it's validity
+ */
+const validateToken: RequestHandler = (req, res, next) => {
   const token = req.headers.token as string;
 
   jwt.verify(token, ACCESS_TOKEN_SECRET, async (err, payload) => {
+    // check token validity
     if (err)
       return res.json({
         status: 401,
@@ -36,3 +42,5 @@ export const validateToken: RequestHandler = (req, res, next) => {
     }
   });
 };
+
+export default validateToken;
