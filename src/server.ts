@@ -4,7 +4,7 @@ import database from "services/database";
 
 const PORT = 3041;
 
-const app = express();
+export const app = express();
 
 // services
 api(app);
