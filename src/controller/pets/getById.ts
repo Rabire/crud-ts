@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { PetInstance } from "models/animal";
+import { PetInstance } from "models/pets";
 
 const getById: RequestHandler = async (req, res) => {
   const { id } = req.params;

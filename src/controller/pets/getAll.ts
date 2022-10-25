@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { PetInstance } from "models/animal";
+import { PetInstance } from "models/pets";
 import { getPagination } from "utils/pagination";
 
 const getAll: RequestHandler = async (req, res) => {

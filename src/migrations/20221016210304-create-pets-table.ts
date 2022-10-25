@@ -1,4 +1,4 @@
-import { columns } from "models/animal";
+import { columns } from "models/pets";
 import { QueryInterface } from "sequelize";
 
 module.exports = {

@@ -1,6 +1,6 @@
 import { QueryInterface } from "sequelize";
 import { v4 as uuidv4 } from "uuid";
-import { PetAttributes, PetSpecies } from "models/animal";
+import { PetAttributes, PetSpecies } from "models/pets";
 
 const mockedPets: PetAttributes[] = [
   {

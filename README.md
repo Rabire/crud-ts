@@ -1,9 +1,9 @@
 # To do
 
 - tests
+
   - routes
   - db
-- todo => animals ?
 
 - services
 
