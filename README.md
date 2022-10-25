@@ -10,6 +10,8 @@
   - fallback fn
   - cron
 
+- emails
+
 - prod
 
 ---

@@ -25,6 +25,9 @@ export const generateRefreshToken = (userId: string) =>
 
 export const isUserLoggedIn = async (userId: string) => {
   const user = await UserInstance.findOne({ where: { id: userId } });
+
+  // TODO: if user === null return user doesn't exist
+
   return Boolean(user?.refreshToken);
 };
 

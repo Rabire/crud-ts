@@ -9,6 +9,7 @@ type UserAttributes = {
   refreshToken: string | null;
 };
 
+// TODO: replace instances by models
 export class UserInstance extends Model<UserAttributes> {
   declare id: string;
   declare email: string;
@@ -20,7 +21,8 @@ export class UserInstance extends Model<UserAttributes> {
 UserInstance.init(
   {
     id: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
       allowNull: false,
     },
